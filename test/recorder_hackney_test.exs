@@ -43,6 +43,15 @@ defmodule ExVCR.RecorderHackneyTest do
     end
   end
 
+  test "forcefully getting HEAD response from server, then loading from cache by recording twice" do
+    use_cassette "head_request" do
+      assert HTTPoison.head!(@url, []).status_code == 200
+    end
+    use_cassette "head_request" do
+      assert HTTPoison.head!(@url, []).status_code == 200
+    end
+  end
+
   test "replace sensitive data in body" do
     ExVCR.Config.filter_sensitive_data("test_response", "PLACEHOLDER")
     use_cassette "sensitive_data_in_body" do

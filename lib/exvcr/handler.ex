@@ -33,7 +33,8 @@ defmodule ExVCR.Handler do
       { response, _ } ->
         ExVCR.Checker.add_cache_count(recorder)
         Recorder.set(responses, recorder)
-        adapter.get_response_value_from_cache(response)
+        raw_response = adapter.get_response_value_from_cache(response)
+        raw_response |> Tuple.to_list |> Enum.filter(fn(v) -> v != nil end) |> List.to_tuple
     end
   end
 
