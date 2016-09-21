@@ -56,6 +56,11 @@ defmodule ExVCR.Adapter.Hackney do
     {:ok, status_code, filtered_headers, reference}
   end
 
+  defp apply_filters({:ok, status_code, headers}) do
+    filtered_headers = ExVCR.Filter.remove_blacklisted_headers(headers)
+    {:ok, status_code, filtered_headers}
+  end
+
   defp apply_filters({:error, reason}) do
     {:error, reason}
   end
