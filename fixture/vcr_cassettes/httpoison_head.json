@@ -1,0 +1,26 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "head",
+      "options": [],
+      "request_body": "",
+      "url": "http://httpbin.org/head"
+    },
+    "response": {
+      "body": null,
+      "headers": {
+        "Server": "nginx",
+        "Date": "Wed, 21 Sep 2016 23:32:08 GMT",
+        "Content-Type": "text/html",
+        "Content-Length": "233",
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": "true"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
