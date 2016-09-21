@@ -133,6 +133,12 @@ defmodule ExVCR.Adapter.HackneyTest do
     end
   end
 
+  test "head method" do
+    use_cassette "httpoison_head" do
+      assert_response HTTPoison.head!("http://httpbin.org/head")
+    end
+  end
+
   test "stub request works for hackney" do
     use_cassette :stub, [url: "http://www.example.com", body: "Stub Response"] do
       {:ok, status_code, headers, client} = :hackney.request(:get, "http://www.example.com", [], [], [])
