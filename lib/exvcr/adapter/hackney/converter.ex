@@ -41,7 +41,7 @@ defmodule ExVCR.Adapter.Hackney.Converter do
             {key, value}
           end
         value ->
-          value
+          {value, :true}
       end
     end)
   end

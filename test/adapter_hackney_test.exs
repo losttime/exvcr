@@ -80,6 +80,14 @@ defmodule ExVCR.Adapter.HackneyTest do
     end
   end
 
+  test "get request with boolean option" do
+    use_cassette "httpoison_get_option_boolean" do
+      response = HTTPoison.get!("http://example.com", [], [hackney: [:with_body]])
+      assert response.body =~ ~r/Example Domain/
+      assert response.status_code == 200
+    end
+  end
+
   test "post method" do
     use_cassette "httpoison_post" do
       assert_response HTTPoison.post!("http://httpbin.org/post", "test")
