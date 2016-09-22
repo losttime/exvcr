@@ -96,7 +96,16 @@ defmodule ExVCR.Mock do
   def prepare_stub_record(options, adapter) do
     method        = (options[:method] || "get") |> to_string
     url           = (options[:url] || "~r/.+/") |> to_string
-    body          = (options[:body] || "Hello World") |> to_string
+    if is_tuple(List.keyfind(options, :body, 0)) do
+      if options[:body] do
+        body      = options[:body] |> to_string
+      else
+        body      = nil
+      end
+    else
+      body        = "Hello World" |> to_string
+    end
+
     # REVIEW: would be great to have "~r/.+/" as default request_body
     request_body  = (options[:request_body] || "") |> to_string
 
